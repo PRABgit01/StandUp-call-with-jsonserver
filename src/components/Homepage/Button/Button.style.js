@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const ButtonCardBox=styled.div`
-    display: flex;
-`
+export const ButtonCardBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-export const CardStyledButton = styled.button`
+export const StyledPrimaryButton = styled.button`
   background-image: linear-gradient(
     to right,
-    #a99bf9 0%,
-    #e3dbf6 51%,
-    #2bc0e4 100%
-  ); 
+    #0F0F0F 0%,
+    #22092C 51%,
+    #232D3F 100%
+  );
 
   margin: 10px;
   padding: 10px 35px;
@@ -31,17 +33,17 @@ export const CardStyledButton = styled.button`
     background-position: right center;
     color: #fff;
     text-decoration: none;
-  } 
+  }
 `;
 
-export const CreateButtonDesign=styled(Link)`
-text-decoration: none;
-background-image: linear-gradient(
+export const StyledLinkButton = styled(Link)`
+  text-decoration: none;
+  background-image: linear-gradient(
     to right,
-    #a99bf9 0%,
-    #e3dbf6 51%,
-    #2bc0e4 100%
-  ); 
+    #0F0F0F 0%,
+    #22092C 51%,
+    #232D3F 100%
+  );
 
   margin: 10px;
   padding: 10px 35px;
@@ -49,7 +51,7 @@ background-image: linear-gradient(
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: #000;
+  color: #fff;
   box-shadow: 0 0 20px #ccc;
   border-radius: 10px;
   display: block;
@@ -62,4 +64,4 @@ background-image: linear-gradient(
     color: #fff;
     text-decoration: none;
   }
-`
+`;

@@ -4,14 +4,7 @@ import {
   StyledDate,
   StyledDiscription,
   StyledTitle,
-} from "../CreatePage/Create.styled";
-
-import {
-  ButtonCardBox,
-  StyledLinkButton,
-  StyledPrimaryButton,
-} from "../Homepage/Button/Button.style.js";
-
+} from "../Create.styled";
 import {
   StyleStandUpCard,
   StyleStandUpCardBox,
@@ -21,36 +14,35 @@ import {
   StyledSection,
   StyledStandUpContainer,
   StyledWrapper,
-} from "../CreatePage/AddCardcomponent/CardComponent.Styled.js";
-
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+} from "./CardComponent.Styled";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {
+  ButtonCardBox,
+  StyledLinkButton,
+  StyledPrimaryButton,
+} from "../../Homepage/Button/Button.style";
 
-export function UpdatePage() {
-  const { id } = useParams();
-
+export function DataStore() {
   const [value, setValue] = useState({
     Date: "",
     TaskDone: "",
     PendingTask: "",
   });
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:1000/users/${id}`)
-      .then((res) => setValue(res.data))
-      .catch((err) => console.log(err));
-  }, [id]);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .put(`http://localhost:1000/users/${id}`, value)
-      .then((res) => {
-        console.log("Update successful:", res.data);
-      })
-      .catch((err) => console.log("Update failed:", err));
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post("http://localhost:1000/users", value);
+      console.log("Data submitted successfully:", response.data);
+      navigate("/");
+    } catch (error) {
+      console.error("Error submitting data:", error.message);
+    }
   };
 
   return (
@@ -85,7 +77,7 @@ export function UpdatePage() {
                   </StyleStandUpCardBox>
                   <StyleStandUpCardBox>
                     <StyledContainerDetails>
-                      <StyledTitle>What i have done ⁇</StyledTitle>
+                      <StyledTitle>What i will do ⁇</StyledTitle>
                       <StyledDiscription
                         type="text"
                         value={value.PendingTask}
